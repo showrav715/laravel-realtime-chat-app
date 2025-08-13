@@ -9,10 +9,11 @@ const photoPreview = ref(null);
 const typingUser = ref(null);
 let typingTimeout = null;
 
-const props = defineProps(['chatUser']);
-const { chatUser } = props;
+const props = defineProps(['chatUser', 'currentUser']);
+const { chatUser,currentUser } = props;
+console.log(currentUser)
 
-const authUserId = window?.Laravel?.user?.id ?? null; // assuming you pass logged-in user id in blade
+const authUserId = currentUser?.id ?? null;
 
 const scrollToBottom = async () => {
     await nextTick();
@@ -76,7 +77,7 @@ const sendTypingEvent = () => {
     window.Echo.private("channel_for_everyone")
         .whisper('typing', {
             user_id: authUserId,
-            name: window?.Laravel?.user?.name ?? 'Someone'
+            name: currentUser?.name ?? 'Someone'
         });
 };
 
