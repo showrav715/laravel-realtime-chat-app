@@ -48,6 +48,10 @@ Run database migrations and start the queue worker:
 
 `php artisan migrate && php artisan queue:work`
 
+Run Command For storage
+`php artisan storage:link`
+
+
 Start the Reverb server:
 
 `php artisan reverb:start`
